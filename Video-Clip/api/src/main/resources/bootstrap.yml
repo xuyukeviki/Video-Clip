@@ -1,0 +1,9 @@
+
+spring:
+  application:
+    name: nacos
+  cloud:
+    nacos:
+      config:
+        server-addr:   # nacos 所在的地址
+        file-extension: yaml

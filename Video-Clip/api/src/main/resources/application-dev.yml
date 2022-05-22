@@ -1,0 +1,53 @@
+server:
+  port: 8090
+spring:
+  datasource: # 数据源的相关配置
+    type: com.zaxxer.hikari.HikariDataSource      # 数据源的类型，可以更改为其他的数据源配置，比如druid
+    driver-class-name: com.mysql.cj.jdbc.Driver   # com.mysql.cj.jdbc.Driver mysql8.0以上版本使用
+    url: jdbc:mysql://localhost:3306/red-book-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username:
+    password:
+    hikari:
+      connection-timeout: 30000               # 等待连接池分配连接的最大时间（毫秒），超过这个时长还没有可用的连接，则会抛出SQLException
+      minimum-idle: 5                         # 最小连接数
+      maximum-pool-size: 20                   # 最大连接数
+      auto-commit: true                       # 自动提交
+      idle-timeout: 600000                    # 连接超时的最大时长（毫秒），超时则会被释放（retired）
+      pool-name: DataSourceHikariCP           # 连接池的名字
+      max-lifetime: 18000000                  # 连接池的最大生命时长（毫秒），超时则会被释放（retired）
+      connection-test-query: SELECT 1         # 指定校验连接合法性执行的sql语句
+
+  redis:
+    host:
+    port: 6379
+    database: 0
+    password:
+  cloud:
+    nacos:
+      discovery:
+        server-addr:
+
+  data:
+    mongodb:
+      uri: mongodb://账号:密码@IP:Port
+      database: red-book
+  rabbitmq:
+    host:
+    port: 5672
+    username:
+    password:
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'
+
+
+minio:
+  endpoint:  #MinIO服务地址
+  fileHost:  #文件地址中的host
+  bucketName:                   #存储桶bucket名称
+  accessKey:                    #用户名
+  secretKey:                    #密码
+  imgSize: 1024                       #图片大小限制，单位：m
+  fileSize: 1024                      #文件大小限制，单位：m

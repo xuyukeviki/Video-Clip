@@ -1,0 +1,35 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-swallow-size: -1 #tomcat默认大小2M，超过2M文件不会被捕获，需要调整为最大的100MB或者-1
+
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 2MB #文件上传大小限制，设置最大值，不能超过该值，否则报错
+      max-request-size: 2MB #文件最大请求限制，用于批量上传
+  application:
+    name: nacos
+
+# 整合mybatis
+mybatis:
+  type-aliases-package: com.viking.pojo
+  # mapper对应的xml文件存放位置
+  mapper-locations: classpath:mapper/*.xml
+
+# 通用mapper工具的配置
+mapper:
+  mappers: com.viking.mymapper.MyMapper
+  not-empty: false #若为true, insert 和 update中 如果字符串为空则不执行该操作
+  identity: MYSQL #指定数据库为MySql
+
+# 分页插件助手的配置
+pagehelper:
+  helper-dialect: MYSQL
+  support-methods-arguments: true
+# 日志级别
+logging:
+  level:
+    root: info
